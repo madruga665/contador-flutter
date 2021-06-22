@@ -11,10 +11,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var count = 0;
+  int count = 0;
   void increment() {
-    count += 1;
-    setState(() {});
+    setState(() {
+      count += 1;
+    });
+  }
+
+  void decrement() {
+    setState(() {
+      count -= 1;
+    });
+  }
+
+  void reset() {
+    setState(() {
+      count = 0;
+    });
   }
 
   @override
@@ -23,13 +36,33 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text("My Fucking App"),
       ),
-      body:
-          Center(child: Text("CONTADOR\n$count", textAlign: TextAlign.center)),
-      floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: () {
-            increment();
-          }),
+      body: Center(
+          child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "CONTADOR\n$count",
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 40, color: Colors.purple),
+          ),
+          TextButton(
+              onPressed: () {
+                decrement();
+              },
+              child: Text('Decrement')),
+          TextButton(
+              onPressed: () {
+                increment();
+              },
+              child: Text('Increment')),
+          TextButton(
+              onPressed: () {
+                reset();
+              },
+              child: Text('Reset'))
+        ],
+      )),
     );
   }
 }
