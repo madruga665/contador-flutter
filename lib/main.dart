@@ -32,35 +32,53 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    String counterText = "Contador";
     return Scaffold(
       appBar: AppBar(
-        title: Text("My Fucking App"),
+        title: Text("Super Contador"),
       ),
       body: Center(
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+        children: <Widget>[
           Text(
-            "CONTADOR\n$count",
+            counterText,
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 40, color: Colors.purple),
           ),
-          TextButton(
-              onPressed: () {
-                decrement();
-              },
-              child: Text('Decrement')),
-          TextButton(
-              onPressed: () {
-                increment();
-              },
-              child: Text('Increment')),
-          TextButton(
-              onPressed: () {
-                reset();
-              },
-              child: Text('Reset'))
+          Text("$count",
+              style: TextStyle(
+                  fontSize: 40, color: count < 0 ? Colors.red : Colors.purple)),
+          Container(
+            margin: const EdgeInsets.only(top: 50),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                TextButton(
+                    style: TextButton.styleFrom(
+                        backgroundColor: Colors.purple, primary: Colors.white),
+                    onPressed: () {
+                      decrement();
+                    },
+                    child: Text('-')),
+                TextButton(
+                    style: TextButton.styleFrom(
+                        backgroundColor: Colors.purple, primary: Colors.white),
+                    onPressed: () {
+                      reset();
+                    },
+                    child: Text('Reset')),
+                TextButton(
+                    style: TextButton.styleFrom(
+                        backgroundColor: Colors.purple, primary: Colors.white),
+                    onPressed: () {
+                      increment();
+                    },
+                    child: Text('+')),
+              ],
+            ),
+          ),
         ],
       )),
     );
